@@ -1,15 +1,10 @@
 {
   "name": "@gamariverib/studenti-libs-shared",
   "description": "Biblioteca de clases compartidas para los microservicios",
-  "version": "0.1.0",
-  "private": true,
+  "version": "0.1.1",
   "main": "./build/index.js",
-  "license": "Apache Version 2.0",
-  "author": {
-    "name": "José Gamaliel Rivera Ibarra",
-    "email": "gama.rivera@gmail.com",
-    "url": "https://gamarivera.dev"
-  },
+  "license": "Apache-2.0",
+  "author": "José Gamaliel Rivera Ibarra <gama.rivera@gmail.com> (https://gamarivera.dev)",
   "engines": {
     "node": ">=10.0.0",
     "npm": ">=6.14.0"
@@ -22,6 +17,8 @@
   "dependencies": {
     "@google-cloud/firestore": "^6.4.1",
     "@nestjs/common": "^9.2.0",
+    "@nestjs/swagger": "^6.1.3",
+    "class-validator": "^0.13.2",
     "express": "^4.18.2",
     "fireorm": "^0.23.3"
   },
@@ -30,5 +27,18 @@
     "@types/node": "18.11.9",
     "tslint": "6.1.3",
     "typescript": "4.8.4"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GamaRiverib/studenti-libs-shared.git"
+  },
+  "keywords": [
+    "studenti",
+    "libs",
+    "shared"
+  ],
+  "bugs": {
+    "url": "https://github.com/GamaRiverib/studenti-libs-shared/issues"
+  },
+  "homepage": "https://github.com/GamaRiverib/studenti-libs-shared#readme"
 }
