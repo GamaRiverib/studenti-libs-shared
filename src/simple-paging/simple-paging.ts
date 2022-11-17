@@ -23,6 +23,9 @@ export class SimplePaging<T extends IEntity> {
     if (options.limit && !Number.isInteger(options.limit)) {
       options.limit = parseInt(options.limit.toString());
     }
+    if (options.offset && !Number.isInteger(options.offset)) {
+      options.offset = parseInt(options.offset.toString());
+    }
     const cursor: string | undefined = options.cursor;
     const limit: number = options.limit || 100;
     const offset: number = options.offset || 0;
