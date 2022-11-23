@@ -1,0 +1,201 @@
+[{
+  "code": 1,
+  "name": "Alabama",
+  "iso2": "AL"
+}, {
+  "code": 2,
+  "name": "Alaska",
+  "iso2": "AK"
+}, {
+  "code": 3,
+  "name": "Arizona",
+  "iso2": "AZ"
+}, {
+  "code": 4,
+  "name": "Arkansas",
+  "iso2": "AR"
+}, {
+  "code": 5,
+  "name": "California",
+  "iso2": "CA"
+}, {
+  "code": 6,
+  "name": "North Carolina",
+  "iso2": "NC"
+}, {
+  "code": 7,
+  "name": "South Carolina",
+  "iso2": "SC"
+}, {
+  "code": 8,
+  "name": "Colorado",
+  "iso2": "CO"
+}, {
+  "code": 9,
+  "name": "Connecticut",
+  "iso2": "CT"
+}, {
+  "code": 10,
+  "name": "North Dakota",
+  "iso2": "ND"
+}, {
+  "code": 11,
+  "name": "South Dakota",
+  "iso2": "SD"
+}, {
+  "code": 12,
+  "name": "Delaware",
+  "iso2": "DE"
+}, {
+  "code": 13,
+  "name": "Florida",
+  "iso2": "FL"
+}, {
+  "code": 14,
+  "name": "Georgia",
+  "iso2": "GA"
+}, {
+  "code": 15,
+  "name": "Hawaii",
+  "iso2": "HI"
+}, {
+  "code": 16,
+  "name": "Idaho",
+  "iso2": "ID"
+}, {
+  "code": 17,
+  "name": "Illinois",
+  "iso2": "IL"
+}, {
+  "code": 18,
+  "name": "Indiana",
+  "iso2": "IN"
+}, {
+  "code": 19,
+  "name": "Iowa",
+  "iso2": "IA"
+}, {
+  "code": 20,
+  "name": "Kansas",
+  "iso2": "KS"
+}, {
+  "code": 21,
+  "name": "Kentucky",
+  "iso2": "KY"
+}, {
+  "code": 22,
+  "name": "Louisiana",
+  "iso2": "LA"
+}, {
+  "code": 23,
+  "name": "Maine",
+  "iso2": "ME"
+}, {
+  "code": 24,
+  "name": "Maryland",
+  "iso2": "MD"
+}, {
+  "code": 25,
+  "name": "Massachusetts",
+  "iso2": "MA"
+}, {
+  "code": 26,
+  "name": "Michigan",
+  "iso2": "MI"
+}, {
+  "code": 27,
+  "name": "Minnesota",
+  "iso2": "MN"
+}, {
+  "code": 28,
+  "name": "Mississippi",
+  "iso2": "MS"
+}, {
+  "code": 29,
+  "name": "Missouri",
+  "iso2": "MO"
+}, {
+  "code": 30,
+  "name": "Montana",
+  "iso2": "MT"
+}, {
+  "code": 31,
+  "name": "Nebraska",
+  "iso2": "NE"
+}, {
+  "code": 32,
+  "name": "Nevada",
+  "iso2": "NV"
+}, {
+  "code": 33,
+  "name": "New Jersey",
+  "iso2": "NJ"
+}, {
+  "code": 34,
+  "name": "New York",
+  "iso2": "NY"
+}, {
+  "code": 35,
+  "name": "New Hampshire",
+  "iso2": "NH"
+}, {
+  "code": 36,
+  "name": "New Mexico",
+  "iso2": "NM"
+}, {
+  "code": 37,
+  "name": "Ohio",
+  "iso2": "OH"
+}, {
+  "code": 38,
+  "name": "Oklahoma",
+  "iso2": "OK"
+}, {
+  "code": 39,
+  "name": "Oregon",
+  "iso2": "OR"
+}, {
+  "code": 40,
+  "name": "Pennsylvania",
+  "iso2": "PA"
+}, {
+  "code": 41,
+  "name": "Rhode Island",
+  "iso2": "RI"
+}, {
+  "code": 42,
+  "name": "Tennessee",
+  "iso2": "TN"
+}, {
+  "code": 43,
+  "name": "Texas",
+  "iso2": "TX"
+}, {
+  "code": 44,
+  "name": "Utah",
+  "iso2": "UT"
+}, {
+  "code": 45,
+  "name": "Vermont",
+  "iso2": "VT"
+}, {
+  "code": 46,
+  "name": "Virginia",
+  "iso2": "VA"
+}, {
+  "code": 47,
+  "name": "West Virginia",
+  "iso2": "WV"
+}, {
+  "code": 48,
+  "name": "Washington",
+  "iso2": "WA"
+}, {
+  "code": 49,
+  "name": "Wisconsin",
+  "iso2": "WI"
+}, {
+  "code": 50,
+  "name": "Wyoming",
+  "iso2": "WY"
+}]

@@ -1,0 +1,161 @@
+[{
+  "code": 1,
+  "name": "Aguascalientes",
+  "abbrv": "Ags",
+  "iso2": "AG"
+}, {
+  "code": 2,
+  "name": "Baja California",
+  "abbrv": "B.C.",
+  "iso2": "BC"
+}, {
+  "code": 3,
+  "name": "Baja California Sur",
+  "abbrv": "B.C.S.",
+  "iso2": "BS"
+}, {
+  "code": 4,
+  "name": "Campeche",
+  "abbrv": "Camp.",
+  "iso2": "CM"
+}, {
+  "code": 5,
+  "name": "Chiapas",
+  "abbrv": "Chis.",
+  "iso2": "CS"
+}, {
+  "code": 6,
+  "name": "Chihuahua",
+  "abbrv": "Chih.",
+  "iso2": "CH"
+}, {
+  "code": 7,
+  "name": "Ciudad de México",
+  "abbrv": "C.D.Mx.",
+  "iso2": "CX"
+}, {
+  "code": 8,
+  "name": "Coahuila",
+  "abbrv": "Coah.",
+  "iso2": "CO"
+}, {
+  "code": 9,
+  "name": "Colima",
+  "abbrv": "Col.",
+  "iso2": "CL"
+}, {
+  "code": 10,
+  "name": "Durango",
+  "abbrv": "Dgo.",
+  "iso2": "DG"
+}, {
+  "code": 11,
+  "name": "Guanajuato",
+  "abbrv": "Gto.",
+  "iso2": "GT"
+}, {
+  "code": 12,
+  "name": "Guerrero",
+  "abbrv": "Gro.",
+  "iso2": "GR"
+}, {
+  "code": 13,
+  "name": "Hidalgo",
+  "abbrv": "Hgo.",
+  "iso2": "HG"
+}, {
+  "code": 14,
+  "name": "Jalisco",
+  "abbrv": "Jal.",
+  "iso2": "JC"
+}, {
+  "code": 15,
+  "name": "México",
+  "abbrv": "Edo.Méx.",
+  "iso2": "EM"
+}, {
+  "code": 16,
+  "name": "Michoacán",
+  "abbrv": "Mich.",
+  "iso2": "MI"
+}, {
+  "code": 17,
+  "name": "Morelos",
+  "abbrv": "Mor.",
+  "iso2": "MO"
+}, {
+  "code": 18,
+  "name": "Nayarit",
+  "abbrv": "Nay.",
+  "iso2": "NA"
+}, {
+  "code": 19,
+  "name": "Nuevo León",
+  "abbrv": "N.L.",
+  "iso2": "NL"
+}, {
+  "code": 20,
+  "name": "Oaxaca",
+  "abbrv": "Oax.",
+  "iso2": "OA"
+}, {
+  "code": 21,
+  "name": "Puebla",
+  "abbrv": "Pue.",
+  "iso2": "PU"
+}, {
+  "code": 22,
+  "name": "Querétaro",
+  "abbrv": "Qro.",
+  "iso2": "QT"
+}, {
+  "code": 23,
+  "name": "Quintana Roo",
+  "abbrv": "Q.Roo.",
+  "iso2": "QR"
+}, {
+  "code": 24,
+  "name": "San Luis Potosí",
+  "abbrv": "S.L.P.",
+  "iso2": "SL"
+}, {
+  "code": 25,
+  "name": "Sinaloa",
+  "abbrv": "Sin.",
+  "iso2": "SI"
+}, {
+  "code": 26,
+  "name": "Sonora",
+  "abbrv": "Son.",
+  "iso2": "SO"
+}, {
+  "code": 27,
+  "name": "Tabasco",
+  "abbrv": "Tab.",
+  "iso2": "TB"
+}, {
+  "code": 28,
+  "name": "Tamaulipas",
+  "abbrv": "Tamps.",
+  "iso2": "TM"
+}, {
+  "code": 29,
+  "name": "Tlaxcala",
+  "abbrv": "Tlax.",
+  "iso2": "TL"
+}, {
+  "code": 30,
+  "name": "Veracruz",
+  "abbrv": "Ver.",
+  "iso2": "VE"
+}, {
+  "code": 31,
+  "name": "Yucatán",
+  "abbrv": "Yuc.",
+  "iso2": "YU"
+}, {
+  "code": 32,
+  "name": "Zacatecas",
+  "abbrv": "Zac.",
+  "iso2": "ZA"
+}]
