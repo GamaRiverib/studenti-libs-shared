@@ -1,4 +1,5 @@
 export * from "./roles.decorator";
+export * from "./roles.guard";
 export * from "./user-roles";
 export * from "./user.decorator";
 export * from "./user";

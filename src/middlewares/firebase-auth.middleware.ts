@@ -5,7 +5,7 @@ import { App } from 'firebase-admin/app';
 import { DEFAULT_AUTHORIZATION_HEADER, User, USER_REQ_KEY } from '../auth';
 
 const authorization_header =
-  process.env.AUTHORIZATION_HEADER_INFO || 'authorization';
+  process.env.AUTHORIZATION_HEADER_INFO || DEFAULT_AUTHORIZATION_HEADER;
 
 @Injectable()
 export class FirebaseAuthMiddleware implements NestMiddleware {
@@ -18,7 +18,6 @@ export class FirebaseAuthMiddleware implements NestMiddleware {
 
   async use(req: any, res: any, next: () => void) {
     try {
-      const authorization = req.headers[DEFAULT_AUTHORIZATION_HEADER];
       if (!req.headers || !req.headers[authorization_header]) {
         const error = {
           statusCode: 401,
