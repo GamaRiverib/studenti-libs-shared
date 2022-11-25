@@ -31,7 +31,7 @@ const INSTITUTE_CLIENT_USER_ROLES: UserRoles[] = [
   UserRoles.TUTOR
 ];
 
-export function isPlataformAdmin(user: User): boolean {
+export function isPlatformAdmin(user: User): boolean {
   return (
     user.roles.includes(UserRoles.SUPER_ADMIN) ||
     user.roles.includes(UserRoles.PLATFORM_ADMIN)
@@ -54,7 +54,7 @@ export function isInstituteUser(user: User): boolean {
   );
 }
 
-export function isPlataformUserRole(role: UserRoles): boolean {
+export function isPlatformUserRole(role: UserRoles): boolean {
   return PLATFORM_USER_ROLES.includes(role);
 }
 
