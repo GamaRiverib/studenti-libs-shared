@@ -25,7 +25,7 @@ export class FirebaseAuthMiddleware implements NestMiddleware {
           path: req.url,
           message: 'Missing access token',
         };
-        console.error(error);
+        // console.warn(error);
         res.status(401).send(error);
         return;
       }
@@ -36,7 +36,7 @@ export class FirebaseAuthMiddleware implements NestMiddleware {
           path: req.url,
           message: 'Invalid scheme authorization',
         };
-        console.error(error);
+        // console.warn(error);
         res.status(401).send(error);
         return;
       }
@@ -48,7 +48,7 @@ export class FirebaseAuthMiddleware implements NestMiddleware {
           path: req.url,
           message: 'Invalid access token format',
         };
-        console.error(error);
+        // console.warn(error);
         res.status(403).send(error);
       }
       const auth = getAuth(this.firebaseApp);

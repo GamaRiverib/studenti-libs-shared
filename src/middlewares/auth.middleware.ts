@@ -21,17 +21,13 @@ const authorization_header =
 export class AuthMiddleware implements NestMiddleware {
   constructor(
     private readonly secretOrPublicKey?: Secret,
-    private getPublicKey?: (kid: string) => Promise<PublicKeyInfo | null> | PublicKeyInfo | null,
+    private getPublicKey?: (
+      kid: string,
+    ) => Promise<PublicKeyInfo | null> | PublicKeyInfo | null,
     private readonly options?: VerifyOptions,
-  ) {
-    console.debug({
-      secretOrPublicKey,
-      options,
-    });
-  }
+  ) {}
 
   async use(req: any, res: any, next: () => void) {
-    console.debug('AuthMiddleware.use');
     try {
       let json: any;
       if (!req.headers || !req.headers[authorization_header]) {
@@ -41,7 +37,7 @@ export class AuthMiddleware implements NestMiddleware {
           path: req.url,
           message: 'Missing access token',
         };
-        console.error(error);
+        // console.warn(error);
         res.status(401).send(error);
         return;
       }
@@ -53,7 +49,7 @@ export class AuthMiddleware implements NestMiddleware {
             path: req.url,
             message: 'Invalid scheme authorization',
           };
-          console.error(error);
+          // console.warn(error);
           res.status(401).send(error);
           return;
         }
@@ -66,7 +62,7 @@ export class AuthMiddleware implements NestMiddleware {
             path: req.url,
             message: 'Invalid access token format',
           };
-          console.error(error);
+          // console.warn(error);
           res.status(403).send(error);
           return;
         }
@@ -91,7 +87,7 @@ export class AuthMiddleware implements NestMiddleware {
             path: req.url,
             message: 'Invalid access token format',
           };
-          console.error(error);
+          // console.warn(error);
           res.status(403).send(error);
           return;
         }
@@ -101,7 +97,7 @@ export class AuthMiddleware implements NestMiddleware {
           'base64',
         );
         const data = buffer.toString('ascii');
-        json = { payload: JSON.parse(data) };
+        json = JSON.parse(data); // TODO: test
       } else {
         const error = {
           statusCode: 400,
@@ -109,7 +105,7 @@ export class AuthMiddleware implements NestMiddleware {
           path: req.url,
           message: 'Authorization header not supported',
         };
-        console.error(error);
+        // console.warn(error);
         res.status(400).send(error);
       }
       if (!json) {
@@ -119,26 +115,14 @@ export class AuthMiddleware implements NestMiddleware {
           path: req.url,
           message: 'Verification access token error',
         };
-        console.error(error);
-        res.status(400).send(error);
-        return;
-      }
-      const payload = json.payload;
-      if (!payload) {
-        const error = {
-          statusCode: 400,
-          timestamp: new Date().toISOString(),
-          path: req.url,
-          message: 'Verification access token error',
-        };
-        console.error(error);
+        // console.warn(error);
         res.status(400).send(error);
         return;
       }
       const user = new User();
-      user.id = payload.sub;
-      user.institute = payload.institute;
-      user.roles = payload.roles || [];
+      user.id = json.sub;
+      user.institute = json.institute;
+      user.roles = json.roles || [];
       req[USER_REQ_KEY] = user;
       return next();
     } catch (reason: any) {
@@ -148,6 +132,7 @@ export class AuthMiddleware implements NestMiddleware {
         path: req.url,
         message: 'Something was wrong',
       };
+      console.error(reason);
       res.status(400).send(error);
     }
   }
