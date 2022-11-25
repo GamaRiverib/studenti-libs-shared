@@ -1,7 +1,7 @@
 import { Injectable, NestMiddleware } from '@nestjs/common';
-import { initializeApp } from 'firebase-admin';
-import { getAuth } from 'firebase-admin/auth';
+import * as firebase from 'firebase-admin';
 import { App } from 'firebase-admin/app';
+import { getAuth } from 'firebase-admin/auth';
 import { DEFAULT_AUTHORIZATION_HEADER, User, USER_REQ_KEY } from '../auth';
 
 const authorization_header =
@@ -13,7 +13,7 @@ export class FirebaseAuthMiddleware implements NestMiddleware {
   private firebaseApp: App;
 
   constructor() {
-    this.firebaseApp = initializeApp();
+    this.firebaseApp = firebase.initializeApp();
   }
 
   async use(req: any, res: any, next: () => void) {
