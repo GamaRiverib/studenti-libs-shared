@@ -2,33 +2,71 @@ import {
   ArgumentsHost,
   Catch,
   ExceptionFilter,
-  HttpException,
-  Logger,
+  HttpStatus,
 } from '@nestjs/common';
-import { Response, Request } from 'express';
+import { Request, Response } from 'express';
 
 @Catch()
 export class HttpExceptionFilter implements ExceptionFilter {
-  private readonly logger = new Logger(HttpExceptionFilter.name);
-
-  catch(exception: HttpException, host: ArgumentsHost) {
+  catch(exception: any, host: ArgumentsHost) {
     const ctx = host.switchToHttp();
     const response = ctx.getResponse<Response>();
     const request = ctx.getRequest<Request>();
-    const statusCode = exception.getStatus();
-    const message = exception.message || null;
 
-    const body = {
-      statusCode,
+    let statusCode = HttpStatus.BAD_REQUEST;
+    let message = 'Something was wrong';
+    let error = 'Bad Request';
+    let name = exception?.name || 'DefaultException';
+    const data = {};
+    const validations = [];
+
+    if (exception?.getResponse) {
+      const exceptionResponse = exception.getResponse();
+      if (exceptionResponse && typeof exceptionResponse === 'object') {
+        statusCode = exceptionResponse['statusCode'] ?? statusCode;
+        message = exceptionResponse['message'] ?? message;
+        error = exceptionResponse['error'] ?? error;
+      }
+
+      const omit = [
+        'exception',
+        'options',
+        'status',
+        'message',
+        'response',
+        'name',
+      ];
+      for (const k of Object.keys(exception)) {
+        if (!omit.includes(k)) {
+          data[k] = exception[k];
+        }
+      }
+    } else {
+      for (const validationError of exception) {
+        message = 'Data validation error';
+        name = 'ValidationException';
+        error = 'Validation Error';
+        validations.push({
+          property: validationError.property,
+          value: validationError.value,
+          constraints: validationError.constraints,
+        });
+      }
+    }
+
+    const logMessage: any = {
       message,
+      error,
+      name,
+      data,
       timestamp: new Date().toISOString(),
       endpoint: request.url,
     };
 
-    this.logger.warn(`${statusCode} ${message}`);
+    if (validations.length > 0) {
+      logMessage.validations = validations;
+    }
 
-    console.info(`${exception.name} ${message}`);
-
-    response.status(statusCode).json(body);
+    response.status(statusCode).json(logMessage);
   }
 }
