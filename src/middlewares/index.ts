@@ -3,6 +3,7 @@ import { VerifyOptions, Algorithm, SignOptions, sign, Secret } from 'jsonwebtoke
 import { AuthMiddleware, PublicKeyInfo } from './auth.middleware';
 import { FirebaseAuthMiddleware } from './firebase-auth.middleware';
 
+export * from './auth-exception';
 export * from './auth.middleware';
 export * from './firebase-auth.middleware';
 

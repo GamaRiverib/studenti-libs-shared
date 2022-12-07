@@ -3,6 +3,7 @@ import * as firebase from 'firebase-admin';
 import { App } from 'firebase-admin/app';
 import { getAuth } from 'firebase-admin/auth';
 import { DEFAULT_AUTHORIZATION_HEADER, User, USER_REQ_KEY } from '../auth';
+import { AuthException } from './auth-exception';
 
 const authorization_header =
   process.env.AUTHORIZATION_HEADER_INFO || DEFAULT_AUTHORIZATION_HEADER;
@@ -19,37 +20,14 @@ export class FirebaseAuthMiddleware implements NestMiddleware {
   async use(req: any, res: any, next: () => void) {
     try {
       if (!req.headers || !req.headers[authorization_header]) {
-        const error = {
-          statusCode: 401,
-          timestamp: new Date().toISOString(),
-          path: req.url,
-          message: 'Missing access token',
-        };
-        // console.warn(error);
-        res.status(401).send(error);
-        return;
+        throw new AuthException('Missing access token');
       }
       if (!req.headers[authorization_header].startsWith('Bearer ')) {
-        const error = {
-          statusCode: 401,
-          timestamp: new Date().toISOString(),
-          path: req.url,
-          message: 'Invalid scheme authorization',
-        };
-        // console.warn(error);
-        res.status(401).send(error);
-        return;
+        throw new AuthException('Invalid scheme authorization');
       }
       const token = req.headers[authorization_header].split(' ')[1];
       if (!token) {
-        const error = {
-          statusCode: 403,
-          timestamp: new Date().toISOString(),
-          path: req.url,
-          message: 'Invalid access token format',
-        };
-        // console.warn(error);
-        res.status(403).send(error);
+        throw new AuthException('Invalid access token format');
       }
       const auth = getAuth(this.firebaseApp);
       const decodedToken = await auth.verifyIdToken(token);
@@ -60,15 +38,7 @@ export class FirebaseAuthMiddleware implements NestMiddleware {
       req[USER_REQ_KEY] = user;
       return next();
     } catch (reason: any) {
-      console.error(reason);
+      throw new AuthException(reason?.message || 'Something was wrong');
     }
-    const error = {
-      statusCode: 401,
-      timestamp: new Date().toISOString(),
-      path: req.url,
-      message: "Something was wrong"
-    };
-    res.status(401).send(error);
-    return;
   }
 }

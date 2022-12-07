@@ -1,4 +1,4 @@
-import { Injectable, NestMiddleware } from '@nestjs/common';
+import { Injectable, NestMiddleware, UnauthorizedException } from '@nestjs/common';
 import { verify, Secret, VerifyOptions, decode, Algorithm } from 'jsonwebtoken';
 import {
   API_GATEWAY_AUTHORIZATION_HEADER,
@@ -6,6 +6,7 @@ import {
   User,
   USER_REQ_KEY,
 } from '../auth';
+import { AuthException } from './auth-exception';
 
 export interface PublicKeyInfo {
   key_id: string;
@@ -31,40 +32,16 @@ export class AuthMiddleware implements NestMiddleware {
     try {
       let json: any;
       if (!req.headers || !req.headers[authorization_header]) {
-        const error = {
-          statusCode: 401,
-          timestamp: new Date().toISOString(),
-          path: req.url,
-          message: 'Missing access token',
-        };
-        // console.warn(error);
-        res.status(401).send(error);
-        return;
+        throw new AuthException('Missing access token');
       }
       if (authorization_header === DEFAULT_AUTHORIZATION_HEADER) {
         if (!req.headers[authorization_header].startsWith('Bearer ')) {
-          const error = {
-            statusCode: 401,
-            timestamp: new Date().toISOString(),
-            path: req.url,
-            message: 'Invalid scheme authorization',
-          };
-          // console.warn(error);
-          res.status(401).send(error);
-          return;
+          throw new AuthException('Invalid scheme authorization');
         }
         const token = req.headers[authorization_header].split(' ')[1];
         const decoded: any = decode(token, { complete: true });
         if (typeof decoded !== 'object') {
-          const error = {
-            statusCode: 403,
-            timestamp: new Date().toISOString(),
-            path: req.url,
-            message: 'Invalid access token format',
-          };
-          // console.warn(error);
-          res.status(403).send(error);
-          return;
+          throw new AuthException('Invalid access token format');
         }
         let publicKey: Secret = this.secretOrPublicKey;
         if (decoded.header.kid && this.getPublicKey) {
@@ -82,25 +59,10 @@ export class AuthMiddleware implements NestMiddleware {
         try {
           json = verify(token, publicKey, this.options);
         } catch (reason) {
-          const error = {
-            statusCode: 401,
-            timestamp: new Date().toISOString(),
-            path: req.url,
-            message: 'Token expired',
-          };
-          console.error(reason);
-          res.status(401).send(error);
+          throw new AuthException(reason?.message || 'Token expired');
         }
         if (typeof json !== 'object') {
-          const error = {
-            statusCode: 403,
-            timestamp: new Date().toISOString(),
-            path: req.url,
-            message: 'Invalid access token format',
-          };
-          // console.warn(error);
-          res.status(403).send(error);
-          return;
+          throw new AuthException('Invalid access token format');
         }
       } else if (authorization_header === API_GATEWAY_AUTHORIZATION_HEADER) {
         let buffer = Buffer.from(
@@ -110,25 +72,10 @@ export class AuthMiddleware implements NestMiddleware {
         const data = buffer.toString('ascii');
         json = JSON.parse(data); // TODO: test
       } else {
-        const error = {
-          statusCode: 400,
-          timestamp: new Date().toISOString(),
-          path: req.url,
-          message: 'Authorization header not supported',
-        };
-        // console.warn(error);
-        res.status(400).send(error);
+        throw new AuthException('Authorization header not supported');
       }
       if (!json) {
-        const error = {
-          statusCode: 400,
-          timestamp: new Date().toISOString(),
-          path: req.url,
-          message: 'Verification access token error',
-        };
-        // console.warn(error);
-        res.status(400).send(error);
-        return;
+        throw new AuthException('Verification access token error');
       }
       const user = new User();
       user.id = json.sub;
@@ -137,14 +84,7 @@ export class AuthMiddleware implements NestMiddleware {
       req[USER_REQ_KEY] = user;
       return next();
     } catch (reason: any) {
-      const error = {
-        statusCode: 400,
-        timestamp: new Date().toISOString(),
-        path: req.url,
-        message: 'Something was wrong',
-      };
-      console.error(reason);
-      res.status(400).send(error);
+      throw new AuthException(reason?.message || 'Something was wrong');
     }
   }
 }
