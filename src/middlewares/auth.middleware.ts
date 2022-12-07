@@ -15,7 +15,7 @@ export interface PublicKeyInfo {
 }
 
 const authorization_header =
-  process.env.AUTHORIZATION_HEADER_INFO || 'authorization';
+  process.env.AUTHORIZATION_HEADER_INFO || DEFAULT_AUTHORIZATION_HEADER;
 
 @Injectable()
 export class AuthMiddleware implements NestMiddleware {
@@ -79,7 +79,18 @@ export class AuthMiddleware implements NestMiddleware {
             publicKey = publicKeyInfo.public_key;
           }
         }
-        json = verify(token, publicKey, this.options);
+        try {
+          json = verify(token, publicKey, this.options);
+        } catch (reason) {
+          const error = {
+            statusCode: 401,
+            timestamp: new Date().toISOString(),
+            path: req.url,
+            message: 'Token expired',
+          };
+          console.error(reason);
+          res.status(401).send(error);
+        }
         if (typeof json !== 'object') {
           const error = {
             statusCode: 403,
