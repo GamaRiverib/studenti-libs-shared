@@ -12,20 +12,20 @@ export const USER_REQ_KEY = "user";
 export const DEFAULT_AUTHORIZATION_HEADER = "authorization";
 export const API_GATEWAY_AUTHORIZATION_HEADER = "x-apigateway-api-userinfo";
 
-const PLATFORM_USER_ROLES: UserRoles[] = [
+export const PLATFORM_USER_ROLES: UserRoles[] = [
   UserRoles.SUPER_ADMIN,
   UserRoles.PLATFORM_ADMIN,
   UserRoles.CONFIGURATOR
 ];
 
-const INSTITUTE_USER_ROLES: UserRoles[] = [
+export const INSTITUTE_USER_ROLES: UserRoles[] = [
   UserRoles.ASSISTANT,
   UserRoles.INSTITUTE_ADMIN,
   UserRoles.INSTITUTE_EMPLOYEE,
   UserRoles.TEACHER
 ];
 
-const INSTITUTE_CLIENT_USER_ROLES: UserRoles[] = [
+export const INSTITUTE_CLIENT_USER_ROLES: UserRoles[] = [
   UserRoles.AUTHORIZED_PERSON,
   UserRoles.STUDENT,
   UserRoles.TUTOR
