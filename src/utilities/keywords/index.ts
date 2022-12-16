@@ -5,7 +5,9 @@ import {
   createDecipheriv,
 } from 'crypto';
 
-import * as keywords from './keywords.json';
+const keywordFilePath = process.env.STUDENTI_KEYWORDS_FILE_PATH || './keywords.json';
+
+const keywords = require(keywordFilePath);
 
 const ALGORITHM =
   process.env.STUDENTI_KEYWORDS_CRYPTO_ALGORITHM || 'aes-256-ctr';
