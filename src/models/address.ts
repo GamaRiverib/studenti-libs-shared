@@ -124,6 +124,6 @@ export class Address {
 
   @IsOptional()
   @IsPhoneNumber()
-  @ApiPropertyOptional({ type: Number, description: 'Phone number' })
+  @ApiPropertyOptional({ type: String, description: 'Phone number' })
   telephone?: string;
 }
