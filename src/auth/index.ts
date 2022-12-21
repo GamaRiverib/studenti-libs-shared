@@ -1,35 +1,38 @@
-import { User } from "./user";
-import { UserRoles } from "./user-roles";
+import { User } from './user';
+import { UserRoles } from './user-roles';
 
-export * from "./roles.decorator";
-export * from "./roles.guard";
-export * from "./user-roles";
-export * from "./user.decorator";
-export * from "./user";
+export * from './roles.decorator';
+export * from './roles.guard';
+export * from './user-roles';
+export * from './user.decorator';
+export * from './user';
 
-export const ROLES_USER_KEY = "roles";
-export const USER_REQ_KEY = "user";
-export const DEFAULT_AUTHORIZATION_HEADER = "authorization";
-export const API_GATEWAY_AUTHORIZATION_HEADER = "x-apigateway-api-userinfo";
+export const ROLES_USER_KEY = 'roles';
+export const USER_REQ_KEY = 'user';
+export const DEFAULT_AUTHORIZATION_HEADER = 'authorization';
+export const API_GATEWAY_AUTHORIZATION_HEADER = 'x-apigateway-api-userinfo';
 
 export const PLATFORM_USER_ROLES: UserRoles[] = [
   UserRoles.SUPER_ADMIN,
   UserRoles.PLATFORM_ADMIN,
-  UserRoles.CONFIGURATOR
+  UserRoles.CONFIGURATOR,
 ];
 
 export const INSTITUTE_USER_ROLES: UserRoles[] = [
   UserRoles.ASSISTANT,
   UserRoles.INSTITUTE_ADMIN,
   UserRoles.INSTITUTE_EMPLOYEE,
-  UserRoles.TEACHER
+  UserRoles.TEACHER,
 ];
 
 export const INSTITUTE_CLIENT_USER_ROLES: UserRoles[] = [
   UserRoles.AUTHORIZED_PERSON,
   UserRoles.STUDENT,
-  UserRoles.TUTOR
+  UserRoles.TUTOR,
 ];
+
+export const ALL_INSTITUTE_USER_ROLES: UserRoles[] =
+  INSTITUTE_USER_ROLES.concat(INSTITUTE_CLIENT_USER_ROLES);
 
 export function isPlatformAdmin(user: User): boolean {
   return (

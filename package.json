@@ -1,7 +1,7 @@
 {
   "name": "@gamariverib/studenti-libs-shared",
   "description": "Biblioteca de clases compartidas para los microservicios",
-  "version": "0.1.11",
+  "version": "0.1.12",
   "main": "./build/index.js",
   "license": "Apache-2.0",
   "author": "José Gamaliel Rivera Ibarra <gama.rivera@gmail.com> (https://gamarivera.dev)",
