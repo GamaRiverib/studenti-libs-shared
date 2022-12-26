@@ -10,7 +10,8 @@
   "include": [
     "src/**/*.ts",
     "src/models/countries/countries.json",
-    "src/models/states/*/**.json"
+    "src/models/states/*/**.json",
+    "src/utilities/keywords/keywords.json"
   ],
   "exclude": [
     "dist",

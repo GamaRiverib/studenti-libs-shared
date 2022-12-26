@@ -10,4 +10,4 @@ node_modules/
 # Exclude test data
 data/
 
-src/utilities/keywords/keywords.json
+src/utilities/keywords/keywords.v1.json
